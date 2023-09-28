@@ -30,6 +30,18 @@
                     <span>Manage Users</span>
                 </a>
             </li>
+            <li class="{{ Route::is('lecture*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('lecture-index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Dosen</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('blog*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('blog.index') }}">
+                    <i class="fas fa-blog"></i>
+                    <span>Manage Blog</span>
+                </a>
+            </li>
         @endcan
     </ul>
 </aside>
