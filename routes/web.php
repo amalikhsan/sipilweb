@@ -15,14 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth', 'verified'])->group(function() {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::put('/change-profile-avatar', [DashboardController::class, 'changeAvatar'])->name('change-profile-avatar');
     Route::delete('/remove-profile-avatar', [DashboardController::class, 'removeAvatar'])->name('remove-profile-avatar');
 
-    Route::middleware(['can:admin'])->group(function() {
+    Route::middleware(['can:admin'])->group(function () {
         Route::resource('user', UserController::class);
+        Route::get('/lecture', function () {
+            return view('pages.dosen.index');
+        })->name('lecture-index');
+        Route::get('/lecture/create', function () {
+            return view('pages.dosen.create');
+        })->name('lecture-create');
+        Route::get('/lecture/edit', function () {
+            return view('pages.dosen.create');
+        })->name('lecture-edit');
     });
 });
 
