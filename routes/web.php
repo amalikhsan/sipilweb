@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.auth.login');
-})->middleware(['guest']);
-
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
@@ -29,3 +25,11 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('user', UserController::class);
     });
 });
+
+Route::get('/', function () {
+    return view('content.beranda.index');
+})->middleware(['guest'])->name('beranda');
+
+Route::get('/register', function () {
+    return view('pages.auth.login');
+})->middleware(['guest']);

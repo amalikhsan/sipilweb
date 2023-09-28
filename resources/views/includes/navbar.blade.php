@@ -20,7 +20,7 @@
             @else
                 <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             @endif
-            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name; }}</div>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             <a href="{{ route('profile') }}" class="dropdown-item has-icon {{ Route::is('profile*') ? 'active' : '' }}">

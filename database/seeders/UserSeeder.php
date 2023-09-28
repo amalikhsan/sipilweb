@@ -31,7 +31,5 @@ class UserSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('password'),
         ]);
-
-        User::factory(19)->create();
     }
 }
