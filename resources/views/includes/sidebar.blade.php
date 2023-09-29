@@ -1,6 +1,8 @@
 <aside id="sidebar-wrapper">
     <div class="sidebar-brand">
-        <a href="">{{ env('APP_NAME') }}</a>
+        <a href=""><img style="width: 50px; height: 50px;" src="{{ asset('assets/img/civil/logo-sipil.png') }}"
+                alt="">
+            {{ env('APP_NAME') }}</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
         <a href=""></a>
@@ -13,14 +15,6 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        {{-- <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i>
-                <span>Dropdown Menu</span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Dropdown Item</a></li>
-            </ul>
-        </li> --}}
 
         @can('admin')
             <li class="menu-header">Administrator</li>
@@ -30,8 +24,8 @@
                     <span>Manage Users</span>
                 </a>
             </li>
-            <li class="{{ Route::is('lecture*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('lecture-index') }}">
+            <li class="{{ Route::is('dosen*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dosen.index') }}">
                     <i class="fas fa-users"></i>
                     <span>Manage Dosen</span>
                 </a>

@@ -4,7 +4,7 @@
 @section('desc', ' On this page you can edit a user. ')
 
 @section('content')
-    <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dosen.update', $item->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="row">
@@ -16,12 +16,12 @@
                     <input type="file" class="d-none" id="avatar" name="avatar">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('name') }}" type="text"
-                                    class="form-control @error('name') is-invalid @enderror" name="name" id="name"
+                                <input value="{{ old('nama', $item->nama) }}" type="text"
+                                    class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama"
                                     placeholder="Nama">
-                                @error('name')
+                                @error('nama')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -31,7 +31,7 @@
                         <div class="form-group row">
                             <label for="lulusan" class="col-sm-3 col-form-label">Lulusan</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('lulusan') }}" type="text"
+                                <input value="{{ old('lulusan', $item->lulusan) }}" type="text"
                                     class="form-control @error('lulusan') is-invalid @enderror" name="lulusan"
                                     id="lulusan" placeholder="Lulusan">
                                 @error('lulusan')
@@ -41,26 +41,10 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="role" class="col-sm-3 col-form-label">Role</label>
-                            <div class="col-sm-9">
-                                <select name="role" id="role"
-                                    class="form-control text-capitalize @error('role') is-invalid @enderror">
-                                    <option value="user">user</option>
-                                    <option value="admin">admin</option>
-                                    <option value="superadmin">superadmin</option>
-                                </select>
-                                @error('role')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div> --}}
                         <div class="form-group row">
                             <label for="pangkalan" class="col-sm-3 col-form-label">Pangkalan</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('pangkalan') }}" type="text"
+                                <input value="{{ old('pangkalan', $item->pangkalan) }}" type="text"
                                     class="form-control @error('pangkalan') is-invalid @enderror" name="pangkalan"
                                     id="pangkalan" placeholder="Pangkalan">
                                 @error('pangkalan')
@@ -73,7 +57,7 @@
                         <div class="form-group row">
                             <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('jabatan') }}" type="text"
+                                <input value="{{ old('jabatan', $item->jabatan) }}" type="text"
                                     class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
                                     id="jabatan" placeholder="Jabatan">
                                 @error('jabatan')
@@ -86,7 +70,7 @@
                         <div class="form-group row">
                             <label for="nip" class="col-sm-3 col-form-label">Nip</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('nip') }}" type="text"
+                                <input value="{{ old('nip', $item->nip) }}" type="text"
                                     class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip"
                                     placeholder="Nip">
                                 @error('nip')
@@ -99,7 +83,7 @@
                         <div class="form-group row">
                             <label for="nidn" class="col-sm-3 col-form-label">Nidn</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('nidn') }}" type="text"
+                                <input value="{{ old('nidn', $item->nidn) }}" type="text"
                                     class="form-control @error('nidn') is-invalid @enderror" name="nidn" id="nidn"
                                     placeholder="Jabatan">
                                 @error('nidn')
@@ -109,49 +93,29 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="password" class="col-sm-3 col-form-label">Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" id="password" placeholder="Password">
-                                @error('password')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div> --}}
-                        {{-- <div class="form-group row">
-                            <label for="password_confirmation" class="col-sm-3 col-form-label">Confirm Password</label>
-                            <div class="col-sm-9">
-                                <input type="password"
-                                    class="form-control @error('password_confirmation') is-invalid @enderror"
-                                    name="password_confirmation" id="password_confirmation" placeholder="Password">
-                                @error('password_confirmation')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div> --}}
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Avatar</h4>
+                        <h4>Foto</h4>
                     </div>
                     <div class="card-body">
-                        <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
-                            class="rounded-circle w-100 mb-3">
+                        @if ($item->foto)
+                            <img alt="image" src="{{ asset('storage') }}/{{ $item->foto }}"
+                                class="rounded-circle w-100 mb-3">
+                        @else
+                            <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
+                                class="rounded-circle w-100 mb-3">
+                        @endif
                         <div class="clearfix"></div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                            <label class="custom-file-label" for="avatar">Choose Avatar</label>
+                            <label class="custom-file-label" for="avatar">Pilih Foto</label>
                         </div>
                     </div>
                 </div>

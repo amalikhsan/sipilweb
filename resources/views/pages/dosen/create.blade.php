@@ -4,7 +4,7 @@
 @section('desc', ' On this page you can create a new user. ')
 
 @section('content')
-    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dosen.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -15,12 +15,12 @@
                     <input type="file" class="d-none" id="avatar" name="avatar">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('name') }}" type="text"
-                                    class="form-control @error('name') is-invalid @enderror" name="name" id="name"
+                                <input value="{{ old('nama') }}" type="text"
+                                    class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama"
                                     placeholder="Nama">
-                                @error('name')
+                                @error('nama')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -40,22 +40,6 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="role" class="col-sm-3 col-form-label">Role</label>
-                            <div class="col-sm-9">
-                                <select name="role" id="role"
-                                    class="form-control text-capitalize @error('role') is-invalid @enderror">
-                                    <option value="user">user</option>
-                                    <option value="admin">admin</option>
-                                    <option value="superadmin">superadmin</option>
-                                </select>
-                                @error('role')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div> --}}
                         <div class="form-group row">
                             <label for="pangkalan" class="col-sm-3 col-form-label">Pangkalan</label>
                             <div class="col-sm-9">
