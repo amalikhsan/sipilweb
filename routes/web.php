@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataBlogController;
+use App\Http\Controllers\DataDosenTendikController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,17 +23,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/change-profile-avatar', [DashboardController::class, 'changeAvatar'])->name('change-profile-avatar');
     Route::delete('/remove-profile-avatar', [DashboardController::class, 'removeAvatar'])->name('remove-profile-avatar');
 
+    Route::resource('user', UserController::class);
     Route::middleware(['can:admin'])->group(function () {
-        Route::resource('user', UserController::class);
-        Route::get('/lecture', function () {
-            return view('pages.dosen.index');
-        })->name('lecture-index');
-        Route::get('/lecture/create', function () {
-            return view('pages.dosen.create');
-        })->name('lecture-create');
-        Route::get('/lecture/edit', function () {
-            return view('pages.dosen.create');
-        })->name('lecture-edit');
+        Route::resource('blog', DataBlogController::class);
+        Route::resource('dosen', DataDosenTendikController::class);
     });
 });
 

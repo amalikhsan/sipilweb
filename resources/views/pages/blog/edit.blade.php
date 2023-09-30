@@ -4,24 +4,24 @@
 @section('desc', ' On this page you can edit a user. ')
 
 @section('content')
-    <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('blog.update', $item->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Form Dosen dan Tendik</h4>
+                        <h4>Blog Form</h4>
                     </div>
                     <input type="file" class="d-none" id="avatar" name="avatar">
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                            <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('name') }}" type="text"
-                                    class="form-control @error('name') is-invalid @enderror" name="name" id="name"
-                                    placeholder="Nama">
-                                @error('name')
+                                <input value="{{ old('judul', $item->judul) }}" type="text"
+                                    class="form-control @error('judul') is-invalid @enderror" name="judul" id="judul"
+                                    placeholder="Judul">
+                                @error('judul')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -29,12 +29,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="lulusan" class="col-sm-3 col-form-label">Lulusan</label>
+                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('lulusan') }}" type="text"
-                                    class="form-control @error('lulusan') is-invalid @enderror" name="lulusan"
-                                    id="lulusan" placeholder="Lulusan">
-                                @error('lulusan')
+                                <select name="kategori" id="kategori"
+                                    class="form-control text-capitalize @error('kategori') is-invalid @enderror">
+                                    <option value="user">user</option>
+                                    <option value="admin">admin</option>
+                                    <option value="superadmin">superadmin</option>
+                                </select>
+                                @error('kategori')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -42,12 +45,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="pangkalan" class="col-sm-3 col-form-label">Pangkalan</label>
+                            <label for="foto" class="col-sm-3 col-form-label">Gambar</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('pangkalan') }}" type="text"
-                                    class="form-control @error('pangkalan') is-invalid @enderror" name="pangkalan"
-                                    id="pangkalan" placeholder="Pangkalan">
-                                @error('pangkalan')
+                                <img class="img-preview img-fluid mb-2 col-sm-5">
+                                @if ($item->foto)
+                                    <img alt="image" src="{{ asset('storage') }}/{{ $item->foto }}"
+                                        class="rounded-circle w-100 mb-3">
+                                @else
+                                    <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
+                                        class="rounded-circle w-100 mb-3">
+                                @endif
+                                <input class="form-control @error('foto') is-invalid @enderror " type="file"
+                                    id="foto" name="foto" onchange="previewImage()">
+                                @error('foto')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -55,38 +65,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
+                            <label for="konten" class="col-sm-3 col-form-label">Konten</label>
                             <div class="col-sm-9">
-                                <input value="{{ old('jabatan') }}" type="text"
-                                    class="form-control @error('jabatan') is-invalid @enderror" name="jabatan"
-                                    id="jabatan" placeholder="Jabatan">
-                                @error('jabatan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nip" class="col-sm-3 col-form-label">Nip</label>
-                            <div class="col-sm-9">
-                                <input value="{{ old('nip') }}" type="text"
-                                    class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip"
-                                    placeholder="Nip">
-                                @error('nip')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nidn" class="col-sm-3 col-form-label">Nidn</label>
-                            <div class="col-sm-9">
-                                <input value="{{ old('nidn') }}" type="text"
-                                    class="form-control @error('nidn') is-invalid @enderror" name="nidn" id="nidn"
-                                    placeholder="Jabatan">
-                                @error('nidn')
+                                <input value="{{ old('konten', $item->konten) }}" id="konten" type="hidden"
+                                    name="konten">
+                                <trix-editor input="konten"></trix-editor>
+                                @error('konten')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -95,23 +79,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Avatar</h4>
-                    </div>
-                    <div class="card-body">
-                        <img alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
-                            class="rounded-circle w-100 mb-3">
-                        <div class="clearfix"></div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                            <label class="custom-file-label" for="avatar">Choose Avatar</label>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>

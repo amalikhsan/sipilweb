@@ -8,7 +8,7 @@
         <div class="card-header">
             <h4>Daftar Dosen dan Tendik</h4>
             <div class="card-header-action">
-                <a href="{{ route('lecture-create') }}" class="btn btn-primary">
+                <a href="{{ route('dosen.create') }}" class="btn btn-primary">
                     <i class="fa fa-plus"></i>
                     Add New
                 </a>
@@ -22,7 +22,7 @@
                             <th>#</th>
                             <th>Foto</th>
                             <th>Nama</th>
-                            <th>lulusan</th>
+                            <th>Lulusan</th>
                             <th>Pangkalan</th>
                             <th>Jabatan</th>
                             <th>Nip</th>
@@ -58,50 +58,54 @@
                         name: 'id'
                     },
                     {
-                        data: 'avatar',
-                        name: 'avatar'
+                        data: 'foto',
+                        name: 'foto'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'nama',
+                        name: 'nama'
                     },
                     {
-                        data: 'email',
-                        name: 'username'
+                        data: 'lulusan',
+                        name: 'lulusan'
                     },
                     {
-                        data: 'username',
-                        name: 'username'
+                        data: 'pangkalan',
+                        name: 'pangkalan'
                     },
                     {
-                        data: 'role',
-                        name: 'role'
+                        data: 'jabatan',
+                        name: 'jabatan'
                     },
                     {
-                        data: 'email_verified_at',
-                        name: 'email_verified_at'
+                        data: 'nip',
+                        name: 'nip'
+                    },
+                    {
+                        data: 'nidn',
+                        name: 'nidn'
                     },
                 ],
                 columnDefs: [{
                     "targets": 1,
                     "render": function(data, type, row, meta) {
-                        let img = `assets/img/avatar/avatar-5.png`;
+                        let img = ``;
                         if (data) {
                             img = `storage/${data}`;
                         }
 
-                        return `<img alt="image" src="{{ asset('/') }}${img}" class="rounded-circle" width="35">`;
+                        return `<a href="{{ asset('/') }}${img}" target="_blank"><img alt="image" src="{{ asset('/') }}${img}"  width="100"></a>`;
                     }
                 }, {
                     "targets": 2,
                     "render": function(data, type, row, meta) {
                         return `
                         ${data}
-                        <form action="{{ url('/user') }}/${row.id}" method="POST" class="table-links">
+                        <form action="{{ url('/dosen') }}/${row.id}" method="POST" class="table-links">
                             @method('DELETE')
                             @csrf
                             <a
-                                href="{{ url('/user') }}/${row.id}/edit"
+                                href="{{ url('/dosen') }}/${row.id}/edit"
                                 class="btn btn-sm"
                             >
                                 Edit
@@ -115,16 +119,7 @@
                         </form>
                     `;
                     }
-                }, {
-                    "targets": -1,
-                    "render": function(data, type, row, meta) {
-                        if (data) {
-                            return `<div class="badge badge-success">Verified</div>`;
-                        } else {
-                            return `<div class="badge badge-danger">Unverified</div>`;
-                        }
-                    }
-                }],
+                }, ],
                 rowId: function(a) {
                     return a;
                 },

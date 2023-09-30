@@ -26,7 +26,6 @@
                             <th>Kategori</th>
                             <th>Konten</th>
                             <th>Views</th>
-                            <th>actions</th>
                         </tr>
                     </thead>
                 </table>
@@ -74,8 +73,8 @@
                         name: 'kategori'
                     },
                     {
-                        data: 'body',
-                        name: 'body'
+                        data: 'konten',
+                        name: 'konten'
                     },
                     {
                         data: 'views',
@@ -94,15 +93,15 @@
                         }
                     },
                     {
-                        "targets": -1,
+                        "targets": 2,
                         "render": function(data, type, row, meta) {
                             return `
                         ${data}
-                        <form action="{{ url('/user') }}/${row.id}" method="POST" class="table-links">
+                        <form action="{{ url('/blog') }}/${row.id}" method="POST" class="table-links">
                             @method('DELETE')
                             @csrf
                             <a
-                                href="{{ url('/user') }}/${row.id}/edit"
+                                href="{{ url('/blog') }}/${row.id}/edit"
                                 class="btn btn-sm"
                             >
                                 Edit

@@ -27,29 +27,16 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="slug" class="col-sm-3 col-form-label">Slug</label>
-                            <div class="col-sm-9">
-                                <input value="{{ old('slug') }}" type="hidden"
-                                    class="form-control @error('slug') is-invalid @enderror" name="slug" id="slug"
-                                    placeholder="Slug" disabled>
-                                @error('slug')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div> --}}
                         <div class="form-group row">
-                            <label for="role" class="col-sm-3 col-form-label">Kategori</label>
+                            <label for="kategori" class="col-sm-3 col-form-label">Kategori</label>
                             <div class="col-sm-9">
-                                <select name="role" id="role"
-                                    class="form-control text-capitalize @error('role') is-invalid @enderror">
+                                <select name="kategori" id="kategori"
+                                    class="form-control text-capitalize @error('kategori') is-invalid @enderror">
                                     <option value="user">user</option>
                                     <option value="admin">admin</option>
                                     <option value="superadmin">superadmin</option>
                                 </select>
-                                @error('role')
+                                @error('kategori')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -70,11 +57,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="body" class="col-sm-3 col-form-label">Konten</label>
+                            <label for="konten" class="col-sm-3 col-form-label">Konten</label>
                             <div class="col-sm-9">
-                                <input id="body" type="hidden" name="body">
-                                <trix-editor input="body"></trix-editor>
-                                @error('body')
+                                <input id="konten" type="hidden" name="konten">
+                                <trix-editor input="konten"></trix-editor>
+                                @error('konten')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
