@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\dataDosenTendik;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -16,7 +17,9 @@ class DataDosenTendikController extends Controller
     {
         if ($request->ajax()) {
             $query = dataDosenTendik::with('user')->get();
-            return DataTables::of($query)->make();
+            return DataTables::of($query)->addColumn('crypt_id', function ($query) {
+                return Crypt::encryptString($query->id);
+            })->make();
         }
         return view('pages.dosen.index');
     }
@@ -34,6 +37,12 @@ class DataDosenTendikController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'foto' => 'required',
+            'nama' => 'required|max:50',
+            'nip' => 'required',
+        ]);
+
         $data = [
             'nama' => $request->nama,
             'lulusan' => $request->lulusan,
@@ -41,6 +50,7 @@ class DataDosenTendikController extends Controller
             'jabatan' => $request->jabatan,
             'nip' => $request->nip,
             'nidn' => $request->nidn,
+            'role' => $request->role
         ];
 
         if ($request->hasFile('foto')) {
@@ -67,8 +77,9 @@ class DataDosenTendikController extends Controller
      */
     public function edit(string $id)
     {
-        $item = dataDosenTendik::findOrFail($id);
-        return view('pages.dosen.edit', compact('item'));
+        $crypt_id = Crypt::decryptString($id);
+        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
+        return view('pages.dosen.edit', compact('dosenAndTendik'));
     }
 
     /**
@@ -76,7 +87,15 @@ class DataDosenTendikController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dosenAndTendik = dataDosenTendik::findOrFail($id);
+        $crypt_id = Crypt::decryptString($id);
+        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
+
+        $request->validate([
+            'foto' => 'required',
+            'nama' => 'required|max:50',
+            'nip' => 'required',
+        ]);
+
         $data = [
             'nama' => $request->nama,
             'lulusan' => $request->lulusan,
@@ -84,6 +103,7 @@ class DataDosenTendikController extends Controller
             'jabatan' => $request->jabatan,
             'nip' => $request->nip,
             'nidn' => $request->nidn,
+            'role' => $request->role
         ];
 
         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
@@ -101,8 +121,12 @@ class DataDosenTendikController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(dataDosenTendik $dataDosenTendik)
+    public function destroy(string $id)
     {
-        //
+
+        $crypt_id = Crypt::decryptString($id);
+        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
+        $dosenAndTendik->delete();
+        return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }
 }

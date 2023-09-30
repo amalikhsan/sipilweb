@@ -19,10 +19,14 @@
 <!-- Template JS File -->
 <script src="{{ asset('/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('/assets/js/custom.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <!-- Global JS -->
 <script type="text/javascript">
     $(function() {
+        $('.summernote').summernote({
+            placeholder: 'Konten'
+        });
         $('.navbar-nav').on('click', '.btn-logout', function(e) {
             e.preventDefault();
             var form = $(this).parents('form');
@@ -113,6 +117,3 @@
         {!! $toast !!}
     </script>
 @endif
-
-{{-- Trix Editor --}}
-<script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>

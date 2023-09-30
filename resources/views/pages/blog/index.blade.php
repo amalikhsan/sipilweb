@@ -97,11 +97,11 @@
                         "render": function(data, type, row, meta) {
                             return `
                         ${data}
-                        <form action="{{ url('/blog') }}/${row.id}" method="POST" class="table-links">
+                        <form action="{{ url('/blog') }}/${row.crypt_id}" method="POST" class="table-links">
                             @method('DELETE')
                             @csrf
                             <a
-                                href="{{ url('/blog') }}/${row.id}/edit"
+                                href="{{ url('/blog') }}/${row.crypt_id}/edit"
                                 class="btn btn-sm"
                             >
                                 Edit

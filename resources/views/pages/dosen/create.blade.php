@@ -7,13 +7,30 @@
     <form action="{{ route('dosen.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h4>Form Dosen dan Tendik</h4>
                     </div>
                     <input type="file" class="d-none" id="avatar" name="avatar">
                     <div class="card-body">
+                        <div class="form-group row mb-1">
+                            <label for="foto" class="col-sm-3 col-form-label">Foto</label>
+                            <div class="col-sm-9">
+                                <div class="custom-file">
+                                    <input class="custom-file-input @error('foto') is-invalid @enderror " type="file"
+                                        id="foto" name="foto" onchange="previewImage()">
+                                    <label class="custom-file-label" for="foto">Pilih Foto</label>
+                                </div>
+                                {{-- <div class="clearfix"></div> --}}
+                                <img class="img-preview img-fluid my-2 w-100">
+                                @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-9">
@@ -92,27 +109,24 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="role" class="col-sm-3 col-form-label">Kategori</label>
+                            <div class="col-sm-9">
+                                <select name="role" id="role"
+                                    class="form-control text-capitalize @error('role') is-invalid @enderror">
+                                    <option value="dosen">Dosen</option>
+                                    <option value="tendik">Tendik</option>
+                                </select>
+                                @error('role')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-right">
                         <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Foto</h4>
-                    </div>
-                    <div class="card-body">
-                        <img id="img-dummy" alt="image" src="{{ asset('/assets/img/avatar/avatar-1.png') }}"
-                            class="rounded-circle w-100 mb-3">
-                        <img class="img-preview img-fluid mb-2 w-100 rounded-circle">
-                        <div class="clearfix"></div>
-                        <div class="custom-file">
-                            <input class="custom-file-input @error('foto') is-invalid @enderror " type="file"
-                                id="foto" name="foto" onchange="previewImage()">
-                            <label class="custom-file-label" for="foto">Pilih Foto</label>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -125,11 +139,9 @@
         function previewImage() {
             const image = document.querySelector('#foto');
             const imgPreview = document.querySelector('.img-preview');
-            const imgDummy = document.querySelector('#img-dummy')
+            // const imgDummy = document.querySelector('#img-dummy')
 
-            if (imgPreview.style.display = 'block') {
-                imgDummy.style.display = 'none'
-            }
+            imgPreview.style.display = 'block';
 
             const oFReader = new FileReader();
             oFReader.readAsDataURL(image.files[0]);

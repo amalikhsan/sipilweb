@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\dataBlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,7 +18,9 @@ class DataBlogController extends Controller
     {
         if ($request->ajax()) {
             $query = dataBlog::with('user')->get();
-            return DataTables::of($query)->make();
+            return DataTables::of($query)->addColumn('crypt_id', function ($query) {
+                return Crypt::encryptString($query->id);
+            })->make();
         }
         return view('pages.blog.index');
     }
@@ -35,21 +38,54 @@ class DataBlogController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'judul' => $request->judul,
-            'kategori' => $request->kategori,
-            'konten' => $request->konten,
-        ];
+        $request->validate([
+            'foto' => 'required',
+            'judul' => 'required|max:100',
+            'kategori' => 'required',
+            'konten' => 'required',
+        ]);
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('berita', 'public');
+        $kontens = $request->konten;
+        $dom = new \DomDocument();
+        $dom->loadHtml($kontens, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $imageFile = $dom->getElementsByTagName('img');
+
+        // dd($imageFile[0]->getAttribute('src'));
+
+        foreach ($imageFile as $item => $image) {
+            $data = $image->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+            $imgeData = base64_decode($data);
+
+            $image_name = "/storage/berita/" . time() . $item . '.png';
+            $path = public_path() . $image_name;
+            file_put_contents($path, $imgeData);
+
+            $image->removeAttribute('src');
+            $image->setAttribute('src', $image_name);
         }
 
-        $data['user_id'] = auth()->user()->id;
+        $konten = $dom->saveHTML();
+
+        if ($request->hasFile('foto')) {
+            $dataFoto = $request->file('foto')->store('berita', 'public');
+        }
+
+        $dataUserid = auth()->user()->id;
+
+        $data = [
+            'user_id' => $dataUserid,
+            'foto' => $dataFoto,
+            'judul' => $request->judul,
+            'kategori' => $request->kategori,
+            'konten' => $konten,
+        ];
 
         $blogData = dataBlog::create($data);
 
         $blogData->replicate();
+
         return redirect('blog')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
@@ -66,8 +102,9 @@ class DataBlogController extends Controller
      */
     public function edit(string $id)
     {
-        $item = dataBlog::findOrFail($id);
-        return view('pages.blog.edit', compact('item'));
+        $crypt_id = Crypt::decryptString($id);
+        $blog = dataBlog::findOrFail($crypt_id);
+        return view('pages.blog.edit', compact('blog'));
     }
 
     /**
@@ -75,31 +112,69 @@ class DataBlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $blog = dataBlog::findOrFail($id);
-        $data = [
-            'judul' => $request->judul,
-            'kategori' => $request->kategori,
-            'konten' => $request->konten,
-        ];
+        $crypt_id = Crypt::decryptString($id);
+        $blog = dataBlog::findOrFail($crypt_id);
+
+        $request->validate([
+            'foto' => 'required',
+            'judul' => 'required|max:100',
+            'kategori' => 'required',
+            'konten' => 'required',
+        ]);
+
+        $kontens = $request->konten;
+        $dom = new \DomDocument();
+        $dom->loadHtml($kontens, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $imageFile = $dom->getElementsByTagName('img');
+
+        // dd($imageFile[0]->getAttribute('src'));
+
+        foreach ($imageFile as $item => $image) {
+            $data = $image->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+            $imgeData = base64_decode($data);
+
+            $image_name = "/storage/berita/" . time() . $item . '.png';
+            $path = public_path() . $image_name;
+            file_put_contents($path, $imgeData);
+
+            $image->removeAttribute('src');
+            $image->setAttribute('src', $image_name);
+        }
+
+        $konten = $dom->saveHTML();
 
         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-            $path = "foto/";
+            $path = "berita/";
             $oldfile = $path . basename($blog->foto);
             Storage::disk('public')->delete($oldfile);
-            $data['avatar'] = Storage::disk('public')->put($path, $request->file('foto'));
+            $dataFoto = Storage::disk('public')->put($path, $request->file('foto'));
         }
+
+
+        $data = [
+            'foto' => $dataFoto,
+            'judul' => $request->judul,
+            'kategori' => $request->kategori,
+            'konten' => $konten,
+        ];
 
         $blog->slug = null;
         $blog->update($data);
 
-        return redirect('dosen')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('blog')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(dataBlog $dataBlog)
+    public function destroy(string $id)
     {
-        //
+        $crypt_id = Crypt::decryptString($id);
+        $blog = dataBlog::findOrFail($crypt_id);
+        $blog->delete();
+
+        return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }
 }

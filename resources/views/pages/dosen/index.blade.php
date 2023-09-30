@@ -27,6 +27,7 @@
                             <th>Jabatan</th>
                             <th>Nip</th>
                             <th>Nidn</th>
+                            <th>Role</th>
                         </tr>
                     </thead>
                 </table>
@@ -85,6 +86,10 @@
                         data: 'nidn',
                         name: 'nidn'
                     },
+                    {
+                        data: 'role',
+                        name: 'role'
+                    }
                 ],
                 columnDefs: [{
                     "targets": 1,
@@ -101,11 +106,11 @@
                     "render": function(data, type, row, meta) {
                         return `
                         ${data}
-                        <form action="{{ url('/dosen') }}/${row.id}" method="POST" class="table-links">
+                        <form action="{{ url('/dosen') }}/${row.crypt_id}" method="POST" class="table-links">
                             @method('DELETE')
                             @csrf
                             <a
-                                href="{{ url('/dosen') }}/${row.id}/edit"
+                                href="{{ url('/dosen') }}/${row.crypt_id}/edit"
                                 class="btn btn-sm"
                             >
                                 Edit

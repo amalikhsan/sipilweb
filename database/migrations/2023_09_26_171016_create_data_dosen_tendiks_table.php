@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('nip');
             $table->string('nidn')->nullable();
+            $table->enum('role', ['dosen', 'tendik']);
             $table->timestamps();
         });
     }

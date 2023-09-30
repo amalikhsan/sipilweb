@@ -14,6 +14,23 @@
                     </div>
                     <input type="file" class="d-none" id="avatar" name="avatar">
                     <div class="card-body">
+                        <div class="form-group row mb-1">
+                            <label for="foto" class="col-sm-3 col-form-label">Foto</label>
+                            <div class="col-sm-9">
+                                <div class="custom-file">
+                                    <input class="custom-file-input @error('foto') is-invalid @enderror " type="file"
+                                        id="foto" name="foto" onchange="previewImage()">
+                                    <label class="custom-file-label" for="foto">Pilih Foto</label>
+                                </div>
+                                {{-- <div class="clearfix"></div> --}}
+                                <img class="img-preview img-fluid my-2 w-100">
+                                @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="judul" class="col-sm-3 col-form-label">Judul</label>
                             <div class="col-sm-9">
@@ -32,9 +49,9 @@
                             <div class="col-sm-9">
                                 <select name="kategori" id="kategori"
                                     class="form-control text-capitalize @error('kategori') is-invalid @enderror">
-                                    <option value="user">user</option>
-                                    <option value="admin">admin</option>
-                                    <option value="superadmin">superadmin</option>
+                                    <option value="Akademik">Akademik</option>
+                                    <option value="Berita Terkini">Berita Terkini</option>
+                                    <option value="Lowongan Pekerjaan">Lowongan Pekerjaan</option>
                                 </select>
                                 @error('kategori')
                                     <div class="invalid-feedback">
@@ -44,23 +61,10 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="foto" class="col-sm-3 col-form-label">Gambar</label>
-                            <div class="col-sm-9">
-                                <img class="img-preview img-fluid mb-2 col-sm-5">
-                                <input class="form-control @error('foto') is-invalid @enderror " type="file"
-                                    id="foto" name="foto" onchange="previewImage()">
-                                @error('foto')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="konten" class="col-sm-3 col-form-label">Konten</label>
                             <div class="col-sm-9">
-                                <input id="konten" type="hidden" name="konten">
-                                <trix-editor input="konten"></trix-editor>
+                                <textarea name="konten" class="summernote" id="konten"></textarea>
+                                {{-- <trix-editor input="konten"></trix-editor> --}}
                                 @error('konten')
                                     <div class="invalid-feedback">
                                         {{ $message }}

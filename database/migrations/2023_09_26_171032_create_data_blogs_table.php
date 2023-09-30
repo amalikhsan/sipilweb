@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('judul');
             $table->string('slug')->nullable()->unique();
             $table->string('kategori');
-            $table->text('konten');
+            $table->longText('konten');
             $table->string('views')->nullable();
             $table->timestamps();
         });
