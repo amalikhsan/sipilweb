@@ -10,7 +10,7 @@ class dataBlogComments extends Model
 {
     use HasFactory;
     
-    protected $guarded = 'id';
+    protected $guarded = ['id'];
 
     public function dataBlog(){
         return $this->belongsTo(dataBlog::class);

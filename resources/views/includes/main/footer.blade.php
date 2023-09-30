@@ -2,12 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <h4 class="mb-3">Blog Informasi</h4>
+                <h4 class="mb-3">Informasi</h4>
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Akademik</a>
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Berita</a>
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light">Lowongan Kerja</a>
+                        <a href="{{ route('Akademik') }}" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Akademik</a>
+                        <a href="{{ route('Berita_Terkini') }}" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Berita Terkini</a>
+                        <a href="{{ route('Lowongan_Pekerjaan') }}" class="nav-bottom-link d-block text-decoration-none text-light">Lowongan Kerja</a>
                     </div>
                     <div class="col-12">
                         <h6>Gedung Teknik Sipil</h6>
@@ -16,26 +16,21 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <h4 class="mb-3">Blog Informasi</h4>
+                <h4 class="mb-3">Blog</h4>
                 <div class="row">
+                    @php
+                    $dataBlogs = App\Models\dataBlog::with('user')->limit(3)->get();
+                    @endphp
+                    @foreach($dataBlogs as $dataBlog)
                     <div class="col-12 mb-3">
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, dignissimos?</a>
-                        <p class="text-secondary mb-0">19/10/2023</p>
+                        <a href="{{ route('Blog_Informasi',$dataBlog->slug) }}" class="nav-bottom-link d-block text-decoration-none text-light mb-2">{{ $dataBlog->judul }}</a>
+                        <p class="text-secondary mb-0">{{ $dataBlog->created_at->diffForHumans() }}</p>
                     </div>
-                    <div class="col-12 mb-3">
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Rerum, dignissimos?</a>
-                        <p class="text-secondary mb-0">19/10/2023</p>
-                    </div>
-                    <div class="col-12">
-                        <a href="" class="nav-bottom-link d-block text-decoration-none text-light mb-2">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Rerum, dignissimos?</a>
-                        <p class="text-secondary mb-0">19/10/2023</p>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-4 h-auto">
-                <h4 class="mb-3">Blog Informasi</h4>
+                <h4 class="mb-3">Googke Maps</h4>
                 <div class="row h-100">
                     <div class="col-12 mb-4 h-auto">
                         <iframe
@@ -51,8 +46,13 @@
 <footer class="bg-black py-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 text-center text-lg-start">
                 <p class="text-secondary mb-0">{{ date("Y") }} &copy Teknik Sipil Politeknik Negeri Sriwijaya - {{ env('APP_NAME') }}</p>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <a href="{{ route('Akademik') }}" class="text-secondary me-3">Akademik</a>
+                <a href="{{ route('Berita_Terkini') }}" class="text-secondary me-3">Berita Terkini</a>
+                <a href="{{ route('Lowongan_Pekerjaan') }}" class="text-secondary">Lowongan Kerja</a>
             </div>
         </div>
     </div>
