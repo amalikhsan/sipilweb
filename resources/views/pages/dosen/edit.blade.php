@@ -26,6 +26,8 @@
                                 </div>
                                 {{-- <div class="clearfix"></div> --}}
                                 <img class="img-preview img-fluid my-2 w-100">
+                                <img src="{{ asset('storage/' . $dosenAndTendik->foto) }}"
+                                    class="img-old img-fluid my-2 w-100">
                                 @error('foto')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -138,3 +140,24 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#foto');
+            const imgPreview = document.querySelector('.img-preview');
+            const imgOld = document.querySelector('.img-old')
+
+            if (imgPreview.style.display = 'block') {
+                imgOld.style.display = 'none'
+            }
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = (oFREvent) => {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
+@endpush

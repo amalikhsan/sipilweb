@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dataAlumni;
 use Illuminate\Http\Request;
-use App\Models\dataDosenTendik;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
-class DataDosenTendikController extends Controller
+class DataAlumniController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,12 @@ class DataDosenTendikController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = dataDosenTendik::with('user')->get();
+            $query = dataAlumni::get();
             return DataTables::of($query)->addColumn('crypt_id', function ($query) {
                 return Crypt::encryptString($query->id);
             })->make();
         }
-        return view('pages.dosen.index');
+        return view('pages.alumni.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class DataDosenTendikController extends Controller
      */
     public function create()
     {
-        return view('pages.dosen.create');
+        return view('pages.alumni.create');
     }
 
     /**
@@ -39,35 +39,30 @@ class DataDosenTendikController extends Controller
     {
         $request->validate([
             'foto' => 'required',
-            'nama' => 'required|max:50',
-            'nip' => 'required',
+            'nama' => 'required',
+            'tahunLulus' => 'required',
+            'prodi' => 'required'
         ]);
 
         $data = [
             'nama' => $request->nama,
-            'lulusan' => $request->lulusan,
-            'pangkalan' => $request->pangkalan,
-            'jabatan' => $request->jabatan,
-            'nip' => $request->nip,
-            'nidn' => $request->nidn,
-            'role' => $request->role
+            'prodi' => $request->prodi,
+            'tahunLulus' => $request->tahunLulus,
         ];
 
+
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('dosen', 'public');
+            $data['foto'] = $request->file('foto')->store('alumni', 'public');
         }
 
-        $data['user_id'] = auth()->user()->id;
-
-        dataDosenTendik::create($data);
-
-        return redirect('dosen')->with('toast', 'showToast("Data berhasil disimpan")');
+        dataAlumni::create($data);
+        return redirect('alumni')->with('toast', 'showToast("Data berhasil disimpan")');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(dataDosenTendik $dataDosenTendik)
+    public function show(dataAlumni $dataAlumni)
     {
         //
     }
@@ -78,8 +73,8 @@ class DataDosenTendikController extends Controller
     public function edit(string $id)
     {
         $crypt_id = Crypt::decryptString($id);
-        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
-        return view('pages.dosen.edit', compact('dosenAndTendik'));
+        $alumni = dataAlumni::findOrFail($crypt_id);
+        return view('pages.alumni.edit', compact('alumni'));
     }
 
     /**
@@ -88,34 +83,31 @@ class DataDosenTendikController extends Controller
     public function update(Request $request, string $id)
     {
         $crypt_id = Crypt::decryptString($id);
-        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
+        $alumni = dataAlumni::findOrFail($crypt_id);
 
         $request->validate([
             'foto' => 'required',
-            'nama' => 'required|max:50',
-            'nip' => 'required',
+            'nama' => 'required',
+            'tahunLulus' => 'required',
+            'prodi' => 'required'
         ]);
 
         $data = [
             'nama' => $request->nama,
-            'lulusan' => $request->lulusan,
-            'pangkalan' => $request->pangkalan,
-            'jabatan' => $request->jabatan,
-            'nip' => $request->nip,
-            'nidn' => $request->nidn,
-            'role' => $request->role
+            'prodi' => $request->prodi,
+            'tahunLulus' => $request->tahunLulus,
         ];
 
         if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
-            $path = "dosen/";
-            $oldfile = $path . basename($dosenAndTendik->foto);
+            $path = "alumni/";
+            $oldfile = $path . basename($alumni->foto);
             Storage::disk('public')->delete($oldfile);
             $data['foto'] = Storage::disk('public')->put($path, $request->file('foto'));
         }
 
-        $dosenAndTendik->update($data);
+        $alumni->update($data);
 
-        return redirect('dosen')->with('toast', 'showToast("Data berhasil diupdate")');
+        return redirect('alumni')->with('toast', 'showToast("Data berhasil diupdate")');
     }
 
     /**
@@ -123,10 +115,9 @@ class DataDosenTendikController extends Controller
      */
     public function destroy(string $id)
     {
-
         $crypt_id = Crypt::decryptString($id);
-        $dosenAndTendik = dataDosenTendik::findOrFail($crypt_id);
-        $dosenAndTendik->delete();
+        $alumni = dataAlumni::findOrFail($crypt_id);
+        $alumni->delete();
         return redirect()->back()->with('toast', 'showToast("Data berhasil dihapus")');
     }
 }

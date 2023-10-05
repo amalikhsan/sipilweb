@@ -116,7 +116,6 @@ class DataBlogController extends Controller
         $blog = dataBlog::findOrFail($crypt_id);
 
         $request->validate([
-            'foto' => 'required',
             'judul' => 'required|max:100',
             'kategori' => 'required',
             'konten' => 'required',
@@ -149,12 +148,11 @@ class DataBlogController extends Controller
             $path = "berita/";
             $oldfile = $path . basename($blog->foto);
             Storage::disk('public')->delete($oldfile);
-            $dataFoto = Storage::disk('public')->put($path, $request->file('foto'));
+            $data['foto'] = Storage::disk('public')->put($path, $request->file('foto'));
         }
 
 
         $data = [
-            'foto' => $dataFoto,
             'judul' => $request->judul,
             'kategori' => $request->kategori,
             'konten' => $konten,

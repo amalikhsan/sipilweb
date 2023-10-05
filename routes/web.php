@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataAlumniController;
 use App\Http\Controllers\DataBlogController;
 use App\Http\Controllers\DataDosenTendikController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['can:admin'])->group(function () {
         Route::resource('blog', DataBlogController::class);
         Route::resource('dosen', DataDosenTendikController::class);
+        Route::resource('alumni', DataAlumniController::class);
     });
 });
 

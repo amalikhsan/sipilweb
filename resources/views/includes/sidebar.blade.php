@@ -30,6 +30,12 @@
                     <span>Manage Dosen</span>
                 </a>
             </li>
+            <li class="{{ Route::is('alumni*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('alumni.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Manage Alumni</span>
+                </a>
+            </li>
             <li class="{{ Route::is('blog*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('blog.index') }}">
                     <i class="fas fa-blog"></i>

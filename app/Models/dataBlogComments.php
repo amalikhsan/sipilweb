@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class dataBlogComments extends Model
 {
     use HasFactory;
-    
-    protected $guarded = 'id';
 
-    public function dataBlog(){
+    protected $guarded = ['id'];
+
+    public function dataBlog()
+    {
         return $this->belongsTo(dataBlog::class);
     }
 }
