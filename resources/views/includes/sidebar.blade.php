@@ -42,6 +42,12 @@
                     <span>Manage Blog</span>
                 </a>
             </li>
+            <li class="{{ Route::is('agenda*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('agenda-index') }}">
+                    <i class="fas fa-calendar"></i>
+                    <span>Manage Agenda</span>
+                </a>
+            </li>
         @endcan
     </ul>
 </aside>

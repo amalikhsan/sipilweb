@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FullCalender;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\berandaController;
+use App\Http\Controllers\DataBlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAlumniController;
-use App\Http\Controllers\DataBlogController;
 use App\Http\Controllers\DataDosenTendikController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +31,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('blog', DataBlogController::class);
         Route::resource('dosen', DataDosenTendikController::class);
         Route::resource('alumni', DataAlumniController::class);
+        Route::get('/agenda', [FullCalender::class, 'index'])->name('agenda-index');
+        Route::get('/agenda/create', [FullCalender::class, 'create'])->name('agenda-create');
     });
 });
 
-Route::get('/', function () {
-    return view('content.beranda.index');
-})->middleware(['guest'])->name('beranda');
 
 Route::get('/register', function () {
     return view('pages.auth.login');
 })->middleware(['guest']);
+
+Route::get('/', [berandaController::class, 'index']);
