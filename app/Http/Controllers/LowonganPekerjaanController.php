@@ -9,8 +9,12 @@ class LowonganPekerjaanController extends Controller
 {
     public function index()
     {
-        $dataBlogs = dataBlog::with('user')->where('kategori', 'Lowongan Pekerjaan')->get();
-        
-        return view('content.lowonganpekerjaan.index', compact('dataBlogs'));
+        if (request('search')) {
+            $dataBlogs = dataBlog::where('judul', 'like', '%' . request('search') . '%')->orWhere('konten', 'like', '%' . request('search') . '%')->where('kategori', 'Lowongan Pekerjaan')->get();
+        } else {
+            $dataBlogs = dataBlog::where('kategori', 'Lowongan Pekerjaan')->get();
+        }
+
+        return view('content.lowonganpekerjaan.index', compact('dataBlogs'))->with('user');
     }
 }

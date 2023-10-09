@@ -3,7 +3,7 @@
         <a href="">{{ env('APP_NAME') }}</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href=""></a>
+        <a href="">CE</a>
     </div>
     <ul class="sidebar-menu">
         <li class="menu-header">Main Menu</li>
@@ -13,21 +13,38 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        {{-- <li class="nav-item dropdown">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i>
-                <span>Dropdown Menu</span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Dropdown Item</a></li>
-            </ul>
-        </li> --}}
 
         @can('admin')
             <li class="menu-header">Administrator</li>
             <li class="{{ Route::is('user*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-users"></i>
-                    <span>Manage Users</span>
+                    <span>Kelola Data Users</span>
+                </a>
+            </li>
+            <li class="menu-header">Pengelolaan</li>
+            <li class="{{ Route::is('datadosen*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('datadosen.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Kelola Data Dosen</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('dataalumni*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dataalumni.index') }}">
+                    <i class="fas fa-users"></i>
+                    <span>Kelola Data Alumni</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('datablog*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('datablog.index') }}">
+                    <i class="fas fa-blog"></i>
+                    <span>Kelola Data Blog</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('dataevent*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dataevent.index') }}">
+                    <i class="fas fa-calendar"></i>
+                    <span>Kelola Data Agenda</span>
                 </a>
             </li>
         @endcan

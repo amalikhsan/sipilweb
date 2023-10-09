@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('foto');
             $table->string('judul');
-            $table->string('slug');
+            $table->string('slug')->nullable()->unique();
             $table->string('kategori');
-            $table->text('konten');
-            $table->string('views');
+            $table->longText('konten');
+            $table->string('views')->nullable();
             $table->timestamps();
         });
     }

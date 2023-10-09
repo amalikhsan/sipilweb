@@ -10,7 +10,7 @@
     @stack('styles')
 </head>
 
-<body>
+<body class="{{ !Route::is('dashboard') ? 'data-body' : '' }}">
     <div id="app">
         @yield('content')
     </div>

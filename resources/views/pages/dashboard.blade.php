@@ -4,5 +4,68 @@
 @section('desc', 'Page Dashboard. ')
 
 @section('content')
-Dashboard
+<section class="section">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Dosen</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $totalDosen }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Alumni</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $totalAlumni }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Blog</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $totalBlog }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Agenda</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $totalEvent }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection

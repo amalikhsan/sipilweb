@@ -13,47 +13,45 @@
                 <img src="{{ asset('assets/img/hero/hero.jpg') }}" class="w-100 mb-4" alt="">
                 <h3 id="h1" class="fw-bold mb-4">Visi & Misi Teknik Sipil</h3>
                 <p style="text-align:justify;"><b>Visi :</b></p>
-                <p style="text-align:justify;"><i>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio minus non repellendus sed
-                    repellat itaque neque minima ducimus vel est.</i></p>
+                <p style="text-align:justify;"><i>Pada tahun 2024 Program Studi Diploma III Jurusan Teknik Sipil Politeknik Negeri Sriwijaya menjadi penyelenggara
+                pendidikan vokasi yang unggul dan terkemuka di bidang Teknik Sipil serta memiliki daya saing global.</i></p>
                 <p style="text-align:justify;"><b>Misi :</b></p>
                 <ol>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-
+                    <li>Menyelenggarakan pendidikan dan pengajaran yang aplikatif dan berkualitas sesuai dengan perkembangan teknologi dan
+                    kebutuhan pasar global.</li>
+                    <li>Menyelenggarakan penelitian terapan di bidang Teknik Sipil yang dapat memberikan kontribusi positif bagi masyarakat
+                    dan industri konstruksi.</li>
+                    <li>Menyelenggarakan pengabdian masyarakat berbasis ipteks melalui pemberdayaan sumber daya yang dimiliki.</li>
+                    <li>Membina kerjasama serta mengembangkan jejaring kerja dengan stakeholders, baik ditingkat nasional maupun
+                    internasional dalam rangka peningkatan kualitas penyelenggaraan Tri Dharma Perguruan Tinggi</li>
+                    <li>Mengembangkan organisasi dan meningkatkan mutu pengelolaan sumber daya di Jurusan Teknik Sipil untuk mewujudkan
+                    kinerja secara efektif, efisien, dan berkelanjutan.</li>
                 </ol>
-                <p style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quam
-                    voluptas cupiditate earum obcaecati laborum iste esse doloribus recusandae quos ducimus commodi
-                    minima veritatis natus, aut provident enim quo unde alias minus! Cum quod doloremque earum fugit,
-                    officia odio dolorem vitae quasi sed voluptatum sequi est pariatur. Esse, pariatur veniam?</p>
                 <h3 id="h2" class="fw-bold mb-4">Tujuan & Sasaran Teknik Sipil</h3>
                 <p style="text-align:justify;"><b>Tujuan :</b></p>
-                <ol>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                
-                </ol>
+                <p style="text-align: justify;">Menghasilkan tenaga pengelola tingkat menengah yang memiliki tingkat profesional tinggi, menguasai pengetahuan dan
+                keterampilan teknologi bidang Perencanaan, Pegawasan dan Pelaksanaan Bangunan Gedung, Bangunan Air dan Bangunan
+                Transportasi.</p>
                     <p style="text-align:justify;"><b>Sasaran :</b></p>
                     <ol>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus, sunt.</li>
-                    
+                        <li>Memenuhi lapangan kerja di bidang konstruksi jalan dan jembatan yang profesional. Strategi : Minimal 70% lulusan</li>
+                        memiliki IPK ≥ 3,25 b. Minimal 70% lulusan memiliki nilai TOEIC ≥ 405
+                        <li>Mampu melakukan pekerjaan di bidang konstruksi jalan dan jembatan sesuai standar nasional dan/atau internasional.</li>
+                        Strategi : Setiap mahasiswa mengikuti PKL selama minimal 3 bulan b. Setiap lulusan memiliki minimal  satu sertifikat
+                        keahlian (SKA) yang dikeluarkan oleh Lembaga Sertifikasi Profesi (LSP) atau Lembaga Pengembangan Jasa Konstruksi (LPJK)
+                        <li>Minimal 10% mahasiswa berkompetisi dalam program-program kewirausahaan mahasiswa.</li>
+                        <li>Meningkatkan jumlah penelitian terapan dan pengabdian yang terlaksana minimal 5 kegiatan per tahun.</li>
+                        <li>Berpartisipasi pada setiap lomba konstruksi tingkat nasional minimal 1 kali kegiatan dalam satu tahun.</li>
+                        <li>Menjalin kerjasama dengan industri konstruksi minimal 5 perusahaan dalam satu tahun.</li>
+                        <li>Mengadakan seminar dan pameran (civil expo) berskala nasional minimal satu kegiatan dalam satu tahun.</li>
+                        <li>Minimal 70% masa tunggu lulusan untuk mendapatkan pekerjaan pertama kali yang sesuai kompetensinya ≤ 3 bulan.</li>
                     </ol>
-                    <p style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quam
-                        voluptas cupiditate earum obcaecati laborum iste esse doloribus recusandae quos ducimus commodi
-                        minima veritatis natus, aut provident enim quo unde alias minus! Cum quod doloremque earum fugit,
-                        officia odio dolorem vitae quasi sed voluptatum sequi est pariatur. Esse, pariatur veniam?</p>
+                <h3 id="h3" class="fw-bold mb-4">Sarana & Prasarana</h3>
+                    <p style="text-align:justify;">Sarana dan Prasarana Program Studi Diploma III Teknik Sipil dapat dilihat dengan adanya ruang bagi masing-masing dosen,
+                    ruang teori sejumlah 15 ruang yang cukup untuk kegiatan pembelajaran (tatap muka) mahasiswa, Gedung Laboratorium yang
+                    terdiri dari: Laboratorium Pengujian Bahan, Laboratorium Uji Tanah, Laboratorium Struktur, Laboratorium Hidrolika,
+                    Laboratorium Ukur Tanah / Surveying, Laboratorium Transportasi. Serta Bengkel yang terdiri dari Bengkel Terbuka (kerja
+                    batu, kerja beton, acuan perancah, dan drainase) dan Bengkel Tertutup (kerja kayu, kerja plumbing, dan kerja baja).</p>
             </div>
             <div class="col-lg-4">
                 <h3 class="fw-bold mb-4">Daftar Isi</h3>

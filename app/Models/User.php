@@ -5,6 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\dataBlog;
+use App\Models\DataEvent;
+use App\Models\DataAlumni;
+use App\Models\dataDosenTendik;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -50,5 +53,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function dataBlog(){
         return $this->hasMany(dataBlog::class);
+    }
+
+    public function dataDosenTendik()
+    {
+        return $this->hasMany(dataDosenTendik::class);
+    }
+
+    public function DataAlumni()
+    {
+        return $this->hasMany(DataAlumni::class);
+    }
+
+    public function DataEvent()
+    {
+        return $this->hasMany(DataEvent::class);
     }
 }

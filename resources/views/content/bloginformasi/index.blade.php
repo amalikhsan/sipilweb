@@ -14,7 +14,7 @@
                 <h3 id="h1" class="fw-bold mb-4">{{ $dataBlog->judul }}</h3>
                 <p class="text-muted mb-4">{{ $dataBlog->created_at->diffForHumans() }} | {{ $dataBlog->kategori }} |
                 {{ $dataBlog->views }} views</p>
-                {!! htmlspecialchars($dataBlog->konten) !!}
+                {!! $dataBlog->konten !!}
                 <hr>
                 <div class="row">
                     @if($previousBlog)

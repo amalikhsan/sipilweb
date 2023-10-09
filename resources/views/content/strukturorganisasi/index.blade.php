@@ -10,14 +10,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mb-4 mb-lg-0">
-                <img src="{{ asset('assets/img/hero/hero.jpg') }}" class="w-100 mb-4" alt="">
-                <p style="text-align:justify;"><i>Sumber dari Teknik Sipil</i></p>
+                <img src="{{ asset('assets/img/struktur/struktur.jpg') }}" class="w-100 mb-4" alt="">
+                <p style="text-align:justify;"><i>Sumber dari Teknik Sipil Politeknik Negeri Sriwijaya</i></p>
                 <h3 id="h1" class="fw-bold mb-4">Struktur Organisasi</h3>
-                <p style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quam
-                    voluptas cupiditate earum obcaecati laborum iste esse doloribus recusandae quos ducimus commodi
-                    minima veritatis natus, aut provident enim quo unde alias minus! Cum quod doloremque earum fugit,
-                    officia odio dolorem vitae quasi sed voluptatum sequi est pariatur. Esse, pariatur veniam?</p>
-                <p style="text-align:justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, accusamus rem nemo quidem nesciunt, delectus, iusto doloribus ut minima ab iure harum mollitia corporis. Sequi et, amet hic quaerat quae quam ipsam, debitis libero minima reprehenderit alias dicta facilis, consequuntur rem. Tenetur laborum ab ipsa laudantium, delectus reprehenderit eos velit!</p>
+                <p style="text-align:justify;">Berikut adalah struktur organisasi Jurusan Teknik Sipil di Politeknik Negeri Sriwijaya:</p>
+                <ol>
+                    <li>Ketua Jurusan: Ibrahim, ST., MT</li>
+                    <li>Sekretaris Jurusan: Yuniarti, ST., MT</li>
+                    <li>Kepala Program Studi Teknik Bangunan Gedung: Dr. Ir. Raja Tahir, MT</li>
+                    <li>Kepala Program Studi Teknik Perencanaan dan Pengawasan Konstruksi Bangunan: Ir. H. Samsul Bahari, MT</li>
+                    <li>Kepala Program Studi Teknik Perencanaan dan Pengawasan Jalan dan Jembatan: Ir. M. Yusuf Nasir, MT</li>
+                    <li>Kepala Program Studi Teknik Perencanaan dan Pengawasan Infrastruktur Kota: Ir. H. Yudi Setiawan, MT</li>
+                </ol>
+                </p>
+                <p style="text-align:justify;">Selain itu, Jurusan Teknik Sipil di Politeknik Negeri Sriwijaya juga memiliki dosen dan tenaga kependidikan yang
+                mendukung kegiatan akademik dan administrasi di jurusan tersebut. Semua struktur organisasi ini bertujuan untuk
+                memastikan pengelolaan dan pengembangan Jurusan Teknik Sipil di Politeknik Negeri Sriwijaya berjalan dengan baik.</p>
             </div>
             <div class="col-lg-4">
                 <h3 class="fw-bold mb-4">Daftar Isi</h3>

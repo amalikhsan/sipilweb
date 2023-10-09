@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
     <div class="container-lg">
-        <a class="navbar-brand fs-3 fw-bold text-uppercase" href="{{ route('beranda') }}">Civil Engineering</a>
+        <a class="navbar-brand fs-3 fw-bold text-uppercase d-flex align-items-center" href="{{ route('beranda') }}">
+            <img src="{{ asset('assets/img/icon/sipil.png') }}" class="rounded-circle" width="50" height="50" alt="">
+            <span class="ms-3">Civil Engineering</span>
+        </a>
         <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,6 +24,7 @@
                         <li><a class="dropdown-item text-uppercase {{ Route::is('Struktur_Organisasi') ? 'active' : '' }}" href="{{ route('Struktur_Organisasi') }}">Struktur Organisasi</a></li>
                         <li><a class="dropdown-item text-uppercase {{ Route::is('Dosen') ? 'active' : '' }}" href="{{ route('Dosen') }}">Dosen</a></li>
                         <li><a class="dropdown-item text-uppercase {{ Route::is('Tendik') ? 'active' : '' }}" href="{{ route('Tendik') }}">Tendik</a></li>
+                        <li><a class="dropdown-item text-uppercase {{ Route::is('Alumni') ? 'active' : '' }}" href="{{ route('Alumni') }}">Alumni</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -8,7 +8,7 @@
         @method('PUT')
         @csrf
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                         <h4>User Form</h4>
@@ -90,7 +90,7 @@
                         </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
                         <h4>Avatar</h4>

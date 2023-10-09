@@ -15,12 +15,10 @@
                         <h3 class="fw-bold mb-4">Akademik</h3>
                     </div>
                     <div class="col-md-4">
-                        <form action="" method="GET" class="d-flex border mb-3 mb-lg-0">
-                            @csrf
-                            @method('GET')
+                        <form class="d-flex border mb-3 mb-lg-0">
                             <input type="search" name="search"
                                 class="form-control bg-transparent border-0 rounded-0 shadow-none"
-                                placeholder="Cari Dosen & Tendik">
+                                placeholder="Cari Blog Akademik">
                             <button type="submit" class="btn btn-dark rounded-0">Cari</button>
                         </form>
                     </div>
@@ -29,7 +27,7 @@
             <hr>
             <div class="col-12">
                 <div class="row">
-                    @foreach($dataBlogs as $dataBlog)
+                    @forelse($dataBlogs as $dataBlog)
                     <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
                         <div class="card card-box text-center border-0 rounded-0" title="{{ $dataBlog->judul }}" role="button" onclick="return location='{{ route('Blog_Informasi', $dataBlog->slug) }}'">
                             <div class="card-body">
@@ -39,7 +37,11 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="col-12">
+                        <h4 class="text-center my-5">Maaf Data Tidak Ditemukan</h4>
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

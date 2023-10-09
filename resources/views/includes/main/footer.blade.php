@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="col-lg-4 h-auto">
-                <h4 class="mb-3">Googke Maps</h4>
+                <h4 class="mb-3">Google Maps</h4>
                 <div class="row h-100">
                     <div class="col-12 mb-4 h-auto">
                         <iframe
